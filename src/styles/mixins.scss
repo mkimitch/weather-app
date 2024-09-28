@@ -1,0 +1,103 @@
+@mixin rounded-corners {
+	border-radius: 0.8rem;
+}
+
+@mixin drop-shadow {
+	filter: drop-shadow(0 0.7rem 0.7rem oklch(0% 0 0deg / 0.1));
+}
+
+@mixin text-shadow {
+	text-shadow: 0 0.2rem 0.8rem oklch(0% 0 0 / 0.1);
+}
+
+@mixin sr-only {
+	$properties: (
+		border: 0,
+		-webkit-clip-path: inset(50%),
+		clip: rect(0, 0, 0, 0),
+		clip-path: inset(50%),
+		height: 1px,
+		margin: -1px,
+		overflow: hidden,
+		padding: 0,
+		position: absolute,
+		white-space: nowrap,
+		width: 1px
+	);
+
+	@each $property, $value in $properties {
+		#{$property}: $value !important;
+	}
+}
+
+// Animated ellipses
+@mixin ellipsis-animation($duration: 1s) {
+	display: inline-block;
+	padding-right: 3ex;
+	position: relative;
+
+	&::after {
+		animation: ellipsis $duration steps(4, end) infinite;
+		content: "";
+		letter-spacing: 0.5ex;
+		padding-left: 0.5rem;
+		position: absolute;
+	}
+}
+
+@keyframes ellipsis {
+	0% {
+		content: "";
+	}
+
+	25% {
+		content: ".";
+	}
+
+	50% {
+		content: "..";
+	}
+
+	75% {
+		content: "...";
+	}
+}
+
+// Adapted from https://www.notdefined.tech/blog/color-theme-sass-mixin-part-one/
+@mixin theme-colors($theme) {
+	@if $theme == "light" {
+		--background-gradient-start: #{$light-background-gradient-start};
+		--background-gradient-end: #{$light-background-gradient-end};
+		--text-color: #{$light-text-color};
+		--primary-color: #{$light-primary-color};
+		--primary-accent: #{$light-primary-accent};
+		--secondary-accent: #{$light-secondary-accent};
+		--success-color: #{$light-success-color};
+		--warning-color: #{$light-warning-color};
+		--header-background: #{$light-header-background};
+		--header-border: #{$light-header-border};
+		--footer-background: #{$light-footer-background};
+		--footer-border: #{$light-footer-border};
+		--card-background: #{$light-card-background};
+		--button-text-color: #{$light-button-text-color};
+		--destination-gradient-start: #{$light-destination-gradient-start};
+		--destination-gradient-end: #{$light-destination-gradient-end};
+	} @else {
+		--background-gradient-start: #{$dark-background-gradient-start};
+		--background-gradient-end: #{$dark-background-gradient-end};
+		--text-color: #{$dark-text-color};
+		--primary-color: #{$dark-primary-color};
+		--primary-accent: #{$dark-primary-accent};
+		--secondary-accent: #{$dark-secondary-accent};
+		--success-color: #{$dark-success-color};
+		--warning-color: #{$dark-warning-color};
+		--header-background: #{$dark-header-background};
+		--header-border: #{$dark-header-border};
+		--footer-background: #{$dark-footer-background};
+		--footer-border: #{$dark-footer-border};
+		--card-background: #{$dark-card-background};
+		--button-text-color: #{$dark-button-text-color};
+		--destination-gradient-start: #{$dark-destination-gradient-start};
+		--destination-gradient-end: #{$dark-destination-gradient-end};
+	}
+}

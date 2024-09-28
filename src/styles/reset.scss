@@ -1,0 +1,56 @@
+/**
+ * Josh's Custom CSS Reset
+ *
+ * Original source: https://www.joshwcomeau.com/css/custom-css-reset/
+ * Author: Josh W. Comeau | https://github.com/joshwcomeau/
+ * Retrieved on: 2024-09-20
+ *
+ * Changes from original:
+ * - Refactored for SASS
+ */
+
+* {
+	margin: 0;
+	padding: 0;
+	&::before,
+	&::after {
+		box-sizing: border-box;
+	}
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	line-height: 1.5;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: unset;
+	overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+	isolation: isolate;
+}

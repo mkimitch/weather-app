@@ -1,0 +1,201 @@
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~weather-icons/sass/weather-icons";
+@import "~weather-icons/sass/weather-icons-wind";
+@import "~flag-icons/sass/flag-icons";
+
+@import "./reset.scss";
+@import "./themes.scss";
+
+// For reference
+// --background-color-primary
+// --background-color-secondary
+// --text-color
+// --primary-color
+// --primary-accent
+// --secondary-accent
+// --success-color
+// --warning-color
+
+html,
+body {
+	font-size: 10px;
+	min-height: 100svh;
+	padding: 0;
+}
+
+body {
+	background: linear-gradient(to bottom right, var(--background-gradient-start), var(--background-gradient-end));
+	color: var(--text-color);
+	display: flex;
+	font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+		"Noto Color Emoji";
+	transition:
+		background-color 0.3s ease,
+		color 0.3s ease;
+}
+
+// Typography
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--color-text);
+	font-weight: bold;
+	line-height: 1.2;
+}
+
+// Links
+a {
+	color: var(--primary-color);
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+	color: var(--secondary-accent);
+	text-decoration: underline;
+}
+
+.weather-app {
+	align-items: center;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	height: 100%;
+	padding: 0;
+	width: 100vw;
+
+	.main {
+		align-self: center;
+		display: flex;
+		flex-grow: 1;
+		width: 100%;
+
+		& > * {
+			height: 100%;
+			max-width: 160rem;
+			width: 100%;
+		}
+	}
+
+	.card {
+		backdrop-filter: blur(1rem);
+		background: var(--card-background);
+		border-radius: 1.5rem;
+		color: var(--text-color);
+		@include drop-shadow;
+
+		h2 {
+			color: var(--primary-accent);
+			margin-top: 0;
+		}
+	}
+
+	.success {
+		color: var(--success-color);
+	}
+
+	.warning {
+		color: var(--warning-color);
+	}
+
+	button {
+		background: var(--primary-accent);
+		border: none;
+		color: var(--button-text-color);
+		cursor: pointer;
+		font-size: 1.4rem;
+		padding: 1rem;
+		transition:
+			background 0.3s ease,
+			color 0.3s ease;
+		@include rounded-corners;
+
+		&:hover {
+			opacity: 0.9;
+		}
+	}
+}
+
+// For content which should only be accessible by a screen reader
+.sr-only {
+	@include sr-only;
+}
+
+// For content which should only be accessible by a screen reader and keyboard navigation (if focusable)
+.sr-only-focusable:focus-visible {
+	clip: auto !important;
+	-webkit-clip-path: none !important;
+	clip-path: none !important;
+	height: auto !important;
+	margin: auto !important;
+	overflow: visible !important;
+	white-space: normal !important;
+	width: auto !important;
+}
+
+.ellipses {
+	@include ellipsis-animation;
+}
+
+// Media Queries for Accessibility
+@media (prefers-reduced-motion: reduce) {
+	* {
+		transition: none !important;
+	}
+}
+
+// Media Queries for Responsiveness
+@media (max-width: 639.9px) {
+	body {
+		font-size: 14px;
+	}
+
+	h2 {
+		font-size: 18px;
+	}
+
+	button {
+		padding: 8px 16px;
+	}
+
+	input {
+		padding: 8px;
+		width: 100%;
+	}
+}
+
+@media (min-width: 640px) {
+	main.main {
+		max-width: 640px;
+	}
+}
+
+@media (min-width: 768px) {
+	main.main {
+		max-width: 768px;
+	}
+}
+
+@media (min-width: 1024px) {
+	main.main {
+		max-width: 1024px;
+	}
+}
+
+@media (min-width: 1280px) {
+	main.main {
+		max-width: 1280px;
+	}
+}
+
+@media (min-width: 1536px) {
+	main.main {
+		max-width: 1536px;
+	}
+}

@@ -1,0 +1,44 @@
+.daily-forecast {
+	.outlook {
+		display: grid;
+		gap: 2rem;
+		grid-template-columns: repeat(8, 1fr);
+		grid-template-rows: auto;
+	}
+}
+
+@media (max-width: 640px) {
+	.daily-forecast {
+		.outlook {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+	.daily-forecast {
+		.outlook {
+			grid-template-columns: repeat(4, 1fr);
+			grid-template-rows: repeat(2, 1fr);
+		}
+	}
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+	.daily-forecast {
+		.outlook {
+			grid-template-columns: repeat(6, 1fr);
+			grid-template-rows: auto;
+		}
+	}
+}
+
+@media (min-width: 1025px) and (max-width: 1199px) {
+	.daily-forecast {
+		.outlook {
+			grid-template-columns: repeat(8, 1fr);
+			grid-template-rows: auto;
+		}
+	}
+}

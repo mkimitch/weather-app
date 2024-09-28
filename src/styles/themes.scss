@@ -1,0 +1,46 @@
+@import "./mixins.scss";
+
+// Light Theme
+$light-background-gradient-start: oklch(97% 0.05 250);
+$light-background-gradient-end: oklch(94% 0.06 260);
+$light-text-color: oklch(20% 0.02 250);
+$light-primary-color: oklch(60% 0.2 250);
+$light-primary-accent: oklch(75% 0.18 80);
+$light-secondary-accent: oklch(55% 0.2 220);
+$light-success-color: oklch(65% 0.2 150);
+$light-warning-color: oklch(80% 0.15 60);
+$light-header-background: oklch(100% 0 0 / 10%);
+$light-header-border: oklch(20% 0.02 250 / 0.2);
+$light-footer-background: oklch(100% 0 0 / 10%);
+$light-footer-border: oklch(20% 0.02 250 / 0.2);
+$light-card-background: oklch(100% 0 0 / 10%);
+$light-button-text-color: $light-background-gradient-start;
+$light-destination-gradient-start: oklch(70% 0.2 250);
+$light-destination-gradient-end: oklch(85% 0.15 250);
+
+// Dark Theme
+$dark-background-gradient-start: oklch(25% 0.05 240);
+$dark-background-gradient-end: oklch(15% 0.03 260);
+$dark-text-color: oklch(95% 0.02 250);
+$dark-primary-color: oklch(70% 0.2 250);
+$dark-primary-accent: oklch(85% 0.18 80);
+$dark-secondary-accent: oklch(65% 0.2 220);
+$dark-success-color: oklch(75% 0.2 150);
+$dark-warning-color: oklch(85% 0.15 60);
+$dark-header-background: oklch(0% 0 0 / 20%);
+$dark-header-border: oklch(80% 0.02 250 / 0.2);
+$dark-footer-background: oklch(0% 0 0 / 20%);
+$dark-footer-border: oklch(80% 0.02 250 / 0.2);
+$dark-card-background: oklch(0% 0 0 / 20%);
+$dark-button-text-color: $dark-background-gradient-start;
+$dark-destination-gradient-start: oklch(40% 0.15 250);
+$dark-destination-gradient-end: oklch(55% 0.2 250);
+
+// Theme application
+[data-theme="light"] {
+	@include theme-colors("light");
+}
+
+[data-theme="dark"] {
+	@include theme-colors("dark");
+}
