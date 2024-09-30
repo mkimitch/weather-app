@@ -7,7 +7,7 @@ const useOpenWeatherAPI = (
 ): OpenWeatherAPI => {
 	const [data, setData] = useState<OneCallResponse | {}>({})
 	const [loading, setLoading] = useState<boolean>(false)
-	const [error, setError] = useState<string | undefined>()
+	const [error, setError] = useState<string | undefined>(undefined)
 
 	useEffect(() => {
 		const controller = new AbortController()
@@ -15,23 +15,23 @@ const useOpenWeatherAPI = (
 		const fetchData = async () => {
 			try {
 				setLoading(true)
+				setError(undefined)
 				const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY
-				const exclude = 'hourly,minutely'
+				const exclude = ''
 				const units = 'imperial'
 				const lang = 'en-US'
 				const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=${exclude}&units=${units}&lang=${lang}&appid=${apiKey}`
 				const response = await fetch(url, { signal: controller.signal })
 
 				if (!response.ok) {
-					setError('Failed to fetch weather data')
-					console.error('Failed to fetch weather data')
+					throw new Error('Failed to fetch weather data')
 				} else {
 					const data = await response.json()
 					setData(data)
 				}
 			} catch (err: any) {
 				if (err.name !== 'AbortError') {
-					setError(err.message)
+					setError(err.message || 'Something went wrong')
 				}
 			} finally {
 				setLoading(false)
@@ -42,7 +42,7 @@ const useOpenWeatherAPI = (
 			fetchData()
 		}
 
-		return () => controller.abort() // Cleanup if component unmounts or lat/lon change
+		return () => controller.abort()
 	}, [latitude, longitude])
 
 	return { data, error, loading }

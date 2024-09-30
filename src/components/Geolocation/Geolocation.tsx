@@ -26,7 +26,7 @@ const Geolocation: FC = () => {
 			>
 				<i className='fas fa-location-crosshairs'></i>
 			</button>
-			{/* {error && <p>{error}</p>} */}
+			{error && <div>{error}</div>}
 		</>
 	)
 }

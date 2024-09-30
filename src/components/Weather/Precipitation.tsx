@@ -3,26 +3,15 @@ import React, { FC } from 'react'
 
 interface PrecipitationProps {
 	current: CurrentWeather
-	minutely: Minutely[]
 }
 
-const Precipitation: FC<PrecipitationProps> = ({ current, minutely }) => {
+const Precipitation: FC<PrecipitationProps> = ({ current }) => {
 	const { rain, snow } = current
 	return (
-		<div>
-			{rain && <div>Rain (last 1h): {rain['1h']} mm</div>}
-			{snow && <div>Snow (last 1h): {snow['1h']} mm</div>}
-			{minutely && (
-				<div>
-					<div>Minute-by-minute precipitation forecast:</div>
-					{minutely.slice(0, 60).map((minute, index) => (
-						<div key={index}>
-							{new Date(minute.dt * 1000).toLocaleTimeString()}:{' '}
-							{minute.precipitation} mm
-						</div>
-					))}
-				</div>
-			)}
+		<div className='percipitation'>
+			<h2>Current Percipitation</h2>
+			{rain && <div>Rain (last 1h): {rain['1h']} mm/h</div>}
+			{snow && <div>Snow (last 1h): {snow['1h']} mm/h</div>}
 		</div>
 	)
 }

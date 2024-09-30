@@ -10,12 +10,14 @@ const popularLocations = [
 		lat: '40.7127281',
 		lon: '-74.0060152',
 		name: 'New York',
+		state: 'New York',
 	},
 	{
 		country: 'GB',
 		lat: '51.5073219',
 		lon: '-0.1276474',
 		name: 'London',
+		state: 'England',
 	},
 	{
 		country: 'JP',
@@ -28,30 +30,35 @@ const popularLocations = [
 		lat: '19.0785451',
 		lon: '72.878176',
 		name: 'Mumbai',
+		state: 'Maharashtra',
 	},
 	{
 		country: 'AU',
 		lat: '-33.8698439',
 		lon: '151.2082848',
 		name: 'Sydney',
+		state: 'New South Wales',
 	},
 	{
 		country: 'AE',
 		lat: '25.2653471',
 		lon: '55.2924914',
 		name: 'Dubai',
+		state: 'Dubai',
 	},
 	{
 		country: 'BR',
 		lat: '-22.9110137',
 		lon: '-43.2093727',
 		name: 'Rio de Janeiro',
+		state: 'Rio de Janeiro',
 	},
 	{
 		country: 'FR',
 		lat: '-16.504346650000002',
 		lon: '-151.73668863927236',
 		name: 'Bora Bora',
+		state: 'French Polynesia',
 	},
 ]
 

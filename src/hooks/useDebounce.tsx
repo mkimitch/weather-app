@@ -1,4 +1,3 @@
-// weather-app/src/hooks/useDebounce.tsx
 import { useState, useEffect } from 'react'
 
 const useDebounce = <T,>(value: T, delay: number): T => {

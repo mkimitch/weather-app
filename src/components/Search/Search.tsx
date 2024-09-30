@@ -1,6 +1,6 @@
 import './Search.scss'
 
-import React, { FC, KeyboardEvent, useEffect, useState } from 'react'
+import React, { FC, KeyboardEvent, useState } from 'react'
 
 import { DirectGeocodingResponse } from '../../types/openWeatherAPI'
 import Geolocation from '../Geolocation/Geolocation'
@@ -55,7 +55,9 @@ const Search: FC = () => {
 		name,
 		state,
 	}: DirectGeocodingResponse) => {
-		navigate(`/weather/${lat}/${lon}`)
+		navigate(`/weather/${lat}/${lon}`, {
+			state: { name, state, country },
+		})
 		setIsOpen(false)
 	}
 
@@ -88,7 +90,7 @@ const Search: FC = () => {
 					<Geolocation />
 				</div>
 
-				{/* {error && <p>{error}</p>} */}
+				{error && <div>{error}</div>}
 				{isOpen && (
 					<ul
 						id='popup'

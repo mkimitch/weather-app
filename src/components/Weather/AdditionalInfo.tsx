@@ -7,15 +7,14 @@ interface AdditionalInfoProps {
 }
 
 const AdditionalInfo: FC<AdditionalInfoProps> = ({ current, units }) => {
-	const { clouds, dew_point, uvi, visibility } = current
+	const { clouds, dew_point } = current
 	return (
-		<div>
-			<p>UV Index: {uvi}</p>
-			<p>Visibility: {visibility} meters</p>
-			<p>
-				Dew Point: {dew_point} {units === 'metric' ? '°C' : '°F'}
-			</p>
-			<p>Cloudiness: {clouds}%</p>
+		<div className='additional-info'>
+			<h2>Additional Info</h2>
+			<div>
+				Dew Point: {Math.round(dew_point)} {units === 'metric' ? '°C' : '°F'}
+			</div>
+			<div>Cloudiness: {clouds}%</div>
 		</div>
 	)
 }

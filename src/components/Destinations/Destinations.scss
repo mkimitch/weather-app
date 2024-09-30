@@ -5,8 +5,8 @@ section.destinations {
 	gap: 2rem;
 
 	h2 {
-		font-size: 2.4rem;
 		color: var(--secondary-accent);
+		font-size: 2.4rem;
 	}
 
 	ul.destinations-list {
@@ -25,13 +25,14 @@ section.destinations {
 			transition: all 0.3s ease;
 
 			span {
-				background-position: right;
+				background-position: 101%;
 				background-size: 20%;
 				display: flex;
 				height: 100%;
 				transition: background-size 0.3s ease;
 				transition: all 0.3s ease;
 				width: 100%;
+				@include rounded-corners;
 
 				&:has(a:hover),
 				&:has(a:focus) {
@@ -41,7 +42,6 @@ section.destinations {
 
 				a {
 					align-items: center;
-					box-sizing: border-box;
 					color: var(--text-color);
 					display: flex;
 					font-size: 2.4rem;

@@ -16,19 +16,20 @@ const DateTime: FC<DateTimeProps> = ({
 	if (!datetime) return null
 
 	const date = new Date(datetime)
+	const { timeZone } = options
+	const formattedDate = date.toLocaleString(locales, { ...options })
+	const fullDateTitle = date.toLocaleString(locales, {
+		dateStyle: 'full',
+		timeStyle: 'long',
+		timeZone,
+	})
 
 	return (
 		<time
 			dateTime={date.toISOString()}
-			title={date.toLocaleString(locales, {
-				dateStyle: 'full',
-				timeStyle: 'long',
-			})}
+			title={fullDateTitle}
 		>
-			<span aria-hidden>{date.toLocaleString(locales, options)}</span>
-			<span className='sr-only'>
-				{date.toLocaleString(locales, { dateStyle: 'full', timeStyle: 'full' })}
-			</span>
+			{formattedDate}
 		</time>
 	)
 }

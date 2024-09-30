@@ -5,6 +5,7 @@ import React, { FC } from 'react'
 const Footer: FC = () => {
 	return (
 		<footer className='footer'>
+			Made by Mark Kimitch |
 			<a
 				aria-label='Weather App GitHub repository'
 				href='https://github.com/mkimitch/weather-app'

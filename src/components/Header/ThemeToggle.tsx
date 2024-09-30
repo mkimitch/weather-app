@@ -43,9 +43,9 @@ const ThemeToggle: FC = () => {
 			onClick={toggleTheme}
 		>
 			{theme === 'light' ? (
-				<span className='wi wi-night-clear'></span>
+				<span className='wi wi-fw wi-night-clear'></span>
 			) : (
-				<span className='wi wi-day-sunny'></span>
+				<span className='wi wi-fw wi-day-sunny'></span>
 			)}
 		</button>
 	)

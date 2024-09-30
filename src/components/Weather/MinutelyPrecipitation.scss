@@ -1,0 +1,18 @@
+.minutely {
+	.scroll-container {
+		.scroll-item {
+			display: grid;
+			flex: 1 0 fit-content;
+			justify-items: center;
+			padding: 2rem;
+
+			time {
+				display: inline-block;
+			}
+
+			.wi {
+				justify-self: center;
+			}
+		}
+	}
+}
