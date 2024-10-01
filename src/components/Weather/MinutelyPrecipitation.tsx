@@ -1,9 +1,9 @@
 import './MinutelyPrecipitation.scss'
 
-import type { Minutely } from '../../types/openWeatherAPI'
 import React, { FC } from 'react'
 
 import DateTime from '../DateTime/DateTime'
+import type { Minutely } from '../../types/openWeatherAPI'
 import { someTruthy } from '../../utils/utils'
 
 interface PrecipitationProps {

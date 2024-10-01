@@ -1,46 +1,43 @@
-@import "./mixins.scss";
+$alpha-value: -0.8;
 
 // Light Theme
-$light-background-gradient-start: oklch(0.87 0.05 239.92);
-$light-background-gradient-end: oklch(0.87 0.09 221.13);
-$light-text-color: oklch(20% 0.02 250);
-$light-primary-color: oklch(60% 0.2 250);
-$light-primary-accent: oklch(75% 0.18 80);
-$light-secondary-accent: oklch(55% 0.2 220);
-$light-success-color: oklch(65% 0.2 150);
-$light-warning-color: oklch(80% 0.15 60);
-$light-header-background: oklch(100% 0 0 / 10%);
-$light-header-border: oklch(20% 0.02 250 / 0.2);
-$light-footer-background: oklch(100% 0 0 / 10%);
-$light-footer-border: oklch(20% 0.02 250 / 0.2);
-$light-card-background: oklch(100% 0 0 / 10%);
-$light-button-text-color: $light-background-gradient-start;
-$light-destination-gradient-start: oklch(70% 0.2 250);
-$light-destination-gradient-end: oklch(85% 0.15 250);
+$light-theme: (
+	background-gradient-start: oklch(0.87 0.05 239.92),
+	background-gradient-end: oklch(0.87 0.09 221.13),
+	text-color: oklch(0.2 0.02 250),
+	scrollbar-thumb-background: oklch(0.2 0.02 250),
+	primary-color: oklch(0.6 0.2 250),
+	primary-accent: oklch(0.75 0.18 80),
+	secondary-accent: oklch(0.55 0.2 220),
+	success-color: oklch(0.65 0.2 150),
+	warning-color: oklch(0.8 0.15 60),
+	header-background: oklch(1 0 89.88 / 0.1),
+	header-border: oklch(0.2 0.02 250 / 0.2),
+	footer-background: oklch(1 0 89.88 / 0.1),
+	footer-border: oklch(0.2 0.02 250 / 0.2),
+	card-background: oklch(1 0 89.88 / 0.1),
+	button-text-color: oklch(1 0 89.88 / 0.93),
+	destination-gradient-start: oklch(0.7 0.2 250),
+	destination-gradient-end: oklch(0.85 0.15 250)
+);
 
 // Dark Theme
-$dark-background-gradient-start: oklch(25% 0.05 240);
-$dark-background-gradient-end: oklch(15% 0.03 260);
-$dark-text-color: oklch(95% 0.02 250);
-$dark-primary-color: oklch(70% 0.2 250);
-$dark-primary-accent: oklch(85% 0.18 80);
-$dark-secondary-accent: oklch(65% 0.2 220);
-$dark-success-color: oklch(75% 0.2 150);
-$dark-warning-color: oklch(85% 0.15 60);
-$dark-header-background: oklch(0% 0 0 / 20%);
-$dark-header-border: oklch(80% 0.02 250 / 0.2);
-$dark-footer-background: oklch(0% 0 0 / 20%);
-$dark-footer-border: oklch(80% 0.02 250 / 0.2);
-$dark-card-background: oklch(0% 0 0 / 20%);
-$dark-button-text-color: $dark-background-gradient-start;
-$dark-destination-gradient-start: oklch(40% 0.15 250);
-$dark-destination-gradient-end: oklch(55% 0.2 250);
-
-// Theme application
-[data-theme="light"] {
-	@include theme-colors("light");
-}
-
-[data-theme="dark"] {
-	@include theme-colors("dark");
-}
+$dark-theme: (
+	background-gradient-start: oklch(0.25 0.05 240),
+	background-gradient-end: oklch(0.15 0.03 260),
+	text-color: oklch(0.95 0.02 250),
+	primary-color: oklch(0.7 0.2 250),
+	scrollbar-thumb-background: oklch(0.95 0.02 250),
+	primary-accent: oklch(0.85 0.18 80),
+	secondary-accent: oklch(0.65 0.2 220),
+	success-color: oklch(0.75 0.2 150),
+	warning-color: oklch(0.85 0.15 60),
+	header-background: oklch(0 0 0 / 0.2),
+	header-border: oklch(0.8 0.02 250 / 0.2),
+	footer-background: oklch(0 0 0 / 0.2),
+	footer-border: oklch(0.8 0.02 250 / 0.2),
+	card-background: oklch(0 0 0 / 0.2),
+	button-text-color: oklch(0 0 0 / 0.93),
+	destination-gradient-start: oklch(0.4 0.15 250),
+	destination-gradient-end: oklch(0.55 0.2 250)
+);

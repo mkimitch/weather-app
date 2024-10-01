@@ -1,6 +1,6 @@
 import './Search.scss'
 
-import React, { FC, KeyboardEvent, useState } from 'react'
+import React, { FC, FocusEvent, KeyboardEvent, useState } from 'react'
 
 import { DirectGeocodingResponse } from '../../types/openWeatherAPI'
 import Geolocation from '../Geolocation/Geolocation'
@@ -61,7 +61,7 @@ const Search: FC = () => {
 		setIsOpen(false)
 	}
 
-	const handleBlur = (e: React.FocusEvent<HTMLFormElement>) => {
+	const handleBlur = (e: FocusEvent<HTMLFormElement>) => {
 		setTimeout(() => setIsOpen(false), 200)
 	}
 

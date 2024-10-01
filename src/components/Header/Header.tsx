@@ -1,8 +1,9 @@
+import './Header.scss'
+
 import { Link, useLocation } from 'react-router-dom'
 import React, { FC } from 'react'
 
 import ThemeToggle from './ThemeToggle'
-import './Header.scss'
 
 const Header: FC = () => {
 	const location = useLocation()

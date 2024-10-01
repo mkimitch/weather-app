@@ -2,6 +2,7 @@ import './HourlyForecast.scss'
 
 import type { Hourly, Unit } from '../../types/openWeatherAPI'
 import React, { FC } from 'react'
+
 import DateTime from '../DateTime/DateTime'
 
 interface HourlyProps {
@@ -31,8 +32,8 @@ const HourlyForecast: FC<HourlyProps> = ({ hourly, timezone, units }) => {
 							/>
 							<div
 								aria-hidden={true}
-								title={`weather[0].description`}
 								className={`wi big wi-owm-${weather[0].id}`}
+								title={`weather[0].description`}
 							></div>
 							<div>
 								{Math.round(temp)} {units === 'metric' ? '°C' : '°F'}

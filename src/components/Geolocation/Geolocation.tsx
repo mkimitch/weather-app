@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 
 import useGeolocation from '../../hooks/useGeolocation'
 import { useNavigate } from 'react-router-dom'

@@ -1,46 +1,28 @@
 .weather-detail {
 	display: grid;
 	gap: 20px;
-	grid-auto-rows: min-content;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 
-	@media (max-width: 768px) {
-		grid-template-columns: repeat(2, 1fr);
-
-		.grid-5,
-		.grid-6,
-		.grid-7 {
+	@for $i from 1 through 7 {
+		.grid-#{$i} {
 			grid-column: 1 / -1;
 		}
 	}
 
-	@media (max-width: 480px) {
-		grid-template-columns: 1fr;
+	@include responsive-min(mobile) {
+		grid-template-columns: repeat(2, 1fr);
 
-		.card {
-			font-size: 1.4rem;
-			gap: 2rem;
-			padding: 1.5rem;
-
-			h2 {
-				font-size: 2rem;
-			}
-
-			.wi {
-				&.big {
-					font-size: 8rem;
-				}
-
-				&.small {
-					font-size: 1.6rem;
-				}
-			}
+		.grid-2,
+		.grid-3 {
+			grid-column: unset;
 		}
+	}
 
-		.grid-5,
-		.grid-6,
-		.grid-7 {
-			grid-column: 1 / -1;
+	@include responsive-min(tablet) {
+		grid-template-columns: repeat(3, 1fr);
+
+		.grid-4 {
+			grid-column: unset;
 		}
 	}
 
@@ -50,6 +32,12 @@
 		font-size: 1.6rem;
 		gap: 3rem;
 		padding: 2rem;
+		width: 100%;
+
+		&:has(.weather-alerts) {
+			background-color: oklch(0.6 0.24 29.23);
+			color: oklch(1 0 231.14);
+		}
 
 		h2 {
 			color: var(--secondary-accent);
@@ -76,12 +64,6 @@
 				vertical-align: middle;
 			}
 		}
-	}
-
-	.grid-5,
-	.grid-6,
-	.grid-7 {
-		grid-column: 1 / -1;
 	}
 
 	.card:empty {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const useGeocodingAPI = (query: string) => {
 	const [data, setData] = useState<any[] | null>(null)

@@ -1,4 +1,4 @@
-import type { CurrentWeather, Minutely } from '../../types/openWeatherAPI'
+import type { CurrentWeather } from '../../types/openWeatherAPI'
 import React, { FC } from 'react'
 
 interface PrecipitationProps {

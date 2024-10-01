@@ -5,18 +5,17 @@
 @import "~flag-icons/sass/flag-icons";
 
 @import "./reset.scss";
-@import "./scrollbars.scss";
 @import "./themes.scss";
+@import "./scrollbars.scss";
 
-// For reference
-// --background-color-primary
-// --background-color-secondary
-// --text-color
-// --primary-color
-// --primary-accent
-// --secondary-accent
-// --success-color
-// --warning-color
+// Theme application
+[data-theme="light"] {
+	@include theme-colors("light");
+}
+
+[data-theme="dark"] {
+	@include theme-colors("dark");
+}
 
 html,
 body {
@@ -78,10 +77,15 @@ body {
 		text-decoration: underline;
 	}
 
+	.container {
+		max-width: 1600px;
+	}
+
 	.main {
 		display: grid;
 		grid-template-columns: 2rem 1fr 2rem;
 		height: 100%;
+		max-width: 1600px;
 
 		& > * {
 			grid-column: 2 / -2;
@@ -177,55 +181,5 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	* {
 		transition: none !important;
-	}
-}
-
-// Media Queries for Responsiveness
-@media (max-width: 639.9px) {
-	body {
-		font-size: 14px;
-	}
-
-	h2 {
-		font-size: 18px;
-	}
-
-	button {
-		padding: 8px 16px;
-	}
-
-	input {
-		padding: 8px;
-		width: 100%;
-	}
-}
-
-@media (min-width: 640px) {
-	main.main {
-		max-width: 640px;
-	}
-}
-
-@media (min-width: 768px) {
-	main.main {
-		max-width: 768px;
-	}
-}
-
-@media (min-width: 1024px) {
-	main.main {
-		max-width: 1024px;
-	}
-}
-
-@media (min-width: 1280px) {
-	main.main {
-		max-width: 1280px;
-	}
-}
-
-@media (min-width: 1536px) {
-	main.main {
-		max-width: 1536px;
 	}
 }
