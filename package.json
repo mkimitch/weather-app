@@ -16,7 +16,6 @@
 		"@babel/preset-react": "^7.24.7",
 		"@babel/preset-typescript": "^7.24.7",
 		"@fortawesome/fontawesome-free": "^6.6.0",
-		"@testing-library/jest-dom": "^6.5.0",
 		"@testing-library/react": "^16.0.1",
 		"@types/jest": "^29.5.13",
 		"@types/lodash": "^4.17.9",
@@ -46,8 +45,17 @@
 		"webpack-dev-server": "^5.1.0"
 	},
 	"devDependencies": {
+		"@testing-library/dom": "^10.4.0",
+		"@testing-library/jest-dom": "^6.5.0",
 		"@types/css-modules": "^1.0.5",
+		"@types/node": "^22.7.4",
+		"@types/testing-library__react": "^10.2.0",
+		"babel-jest": "^29.7.0",
 		"file-loader": "^6.2.0",
-		"resolve-url-loader": "^5.0.0"
+		"identity-obj-proxy": "^3.0.0",
+		"jest-environment-jsdom": "^29.7.0",
+		"resolve-url-loader": "^5.0.0",
+		"ts-node": "^10.9.2",
+		"tslib": "^2.7.0"
 	}
 }

@@ -13,10 +13,10 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ current, units }) => {
 	return (
 		<div className='current-weather'>
 			<h2>Current Weather</h2>
-			<div>
+			<div data-testid='temperature'>
 				Temperature: {Math.round(temp)} {units === 'metric' ? '°C' : '°F'}
 			</div>
-			<div>
+			<div data-testid='feels-like'>
 				Feels Like: {Math.round(feels_like)} {units === 'metric' ? '°C' : '°F'}
 			</div>
 			<div
@@ -24,10 +24,10 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ current, units }) => {
 				className={`wi big wi-owm-${weather[0].id}`}
 				title={`weather[0].description`}
 			></div>
-			<div>Humidity: {humidity}%</div>
-			<div>Pressure: {pressure} hPa</div>
-			<div>UV Index: {uvi}</div>
-			<div>Visibility: {visibility} meters</div>
+			<div data-testid='humidity'>Humidity: {humidity}%</div>
+			<div data-testid='pressure'>Pressure: {pressure} hPa</div>
+			<div data-testid='uv-index'>UV Index: {uvi}</div>
+			<div data-testid='visibility'>Visibility: {visibility} meters</div>
 		</div>
 	)
 }

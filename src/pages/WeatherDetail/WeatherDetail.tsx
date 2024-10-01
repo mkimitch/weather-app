@@ -46,22 +46,37 @@ const WeatherDetail: FC = () => {
 
 	useEffect(() => {
 		if (reverseGeoData && reverseGeoData.length > 0) {
-			setGeoData(prev => ({
-				...prev,
-				name: prev.name || reverseGeoData[0].name,
-				state: prev.state || reverseGeoData[0].state,
-				country: prev.country || reverseGeoData[0].country,
-			}))
+			setGeoData(prev => {
+				if (
+					prev.name === reverseGeoData[0].name &&
+					prev.state === reverseGeoData[0].state
+				) {
+					return prev
+				}
+				return {
+					...prev,
+					name: prev.name || reverseGeoData[0].name,
+					state: prev.state || reverseGeoData[0].state,
+					country: prev.country || reverseGeoData[0].country,
+				}
+			})
 		}
 	}, [reverseGeoData])
 
 	if (loading || geoLoading) {
-		return <div>Loading...</div>
+		return (
+			<div
+				className='ellipses'
+				data-testid='weather-detail-loading'
+			>
+				Loading
+			</div>
+		)
 	}
 
 	if (error || geoError) {
 		return (
-			<div>
+			<div data-testid='error'>
 				{error ? `Weather API Error: ${error}` : null}
 				{geoError ? `Geocoding API Error: ${geoError}` : null}
 			</div>
