@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 
 const Settings: FC = () => {
 	const [apiKey, setApiKey] = useState(
@@ -14,10 +14,10 @@ const Settings: FC = () => {
 		<div className='settings'>
 			<h2>Settings</h2>
 			<input
-				type='text'
-				value={apiKey}
 				onChange={e => setApiKey(e.target.value)}
 				placeholder='Enter your OpenWeather API Key'
+				type='text'
+				value={apiKey}
 			/>
 			<button onClick={handleSave}>Save API Key</button>
 		</div>

@@ -1,5 +1,5 @@
-import type { OneCallResponse, OpenWeatherAPI } from '../types/openWeatherAPI'
 import { useEffect, useState } from 'react'
+import type { OneCallResponse, OpenWeatherAPI } from '../types/openWeatherAPI'
 
 const useOpenWeatherAPI = (
 	latitude: string | undefined,

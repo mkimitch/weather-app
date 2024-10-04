@@ -1,7 +1,7 @@
 import './HourlyForecast.scss'
 
+import { FC } from 'react'
 import type { Hourly, Unit } from '../../types/openWeatherAPI'
-import React, { FC } from 'react'
 
 import DateTime from '../DateTime/DateTime'
 

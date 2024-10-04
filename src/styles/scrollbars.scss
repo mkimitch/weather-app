@@ -1,34 +1,31 @@
-// Vertical scrollbar
-* {
-	& ::-webkit-scrollbar {
-		background: linear-gradient(to bottom, var(--background-gradient-start), var(--background-gradient-end));
-		height: 0.8rem;
-		width: 0.8rem;
+::-webkit-scrollbar {
+	background: linear-gradient(to bottom, var(--background-gradient-start), var(--background-gradient-end));
+	height: 0.8rem;
+	width: 0.8rem;
 
-		// Horizontal scrollbar
+	// Horizontal scrollbar
+	&:horizontal {
+		@extend ::-webkit-scrollbar;
+	}
+
+	// Vertical scrollbar thumb
+	&-thumb {
+		background-color: var(--scrollbar-thumb-background);
+		border-radius: 1rem;
+
+		// Horizontal scrollbar thumb
 		&:horizontal {
-			@extend ::-webkit-scrollbar;
+			@extend ::-webkit-scrollbar-thumb;
 		}
+	}
 
-		// Vertical scrollbar thumb
-		&-thumb {
-			background-color: var(--scrollbar-thumb-background);
-			border-radius: 1rem;
+	// Vertical scrollbar track
+	&-track {
+		background-color: transparent;
 
-			// Horizontal scrollbar thumb
-			&:horizontal {
-				@extend ::-webkit-scrollbar-thumb;
-			}
-		}
-
-		// Vertical scrollbar track
-		&-track {
-			background-color: transparent;
-
-			// Horizontal scrollbar track
-			&:horizontal {
-				@extend ::-webkit-scrollbar-track;
-			}
+		// Horizontal scrollbar track
+		&:horizontal {
+			@extend ::-webkit-scrollbar-track;
 		}
 	}
 }

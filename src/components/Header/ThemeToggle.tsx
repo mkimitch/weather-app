@@ -1,6 +1,6 @@
 import './ThemeToggle.scss'
 
-import React, { FC, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 const ThemeToggle: FC = () => {
 	const [theme, setTheme] = useState<string>('dark')

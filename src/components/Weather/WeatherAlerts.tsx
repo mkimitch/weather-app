@@ -1,4 +1,6 @@
-import React, { FC } from 'react'
+import './WeatherAlerts.scss'
+
+import { FC } from 'react'
 
 import type { Alert } from '../../types/openWeatherAPI'
 import DateTime from '../DateTime/DateTime'

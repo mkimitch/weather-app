@@ -1,11 +1,11 @@
 import './Footer.scss'
 
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 const Footer: FC = () => {
 	return (
 		<footer className='footer'>
-			Made by Mark Kimitch |
+			Made by Mark Kimitch <span aria-hidden={true}>| </span>
 			<a
 				aria-label='Weather App GitHub repository'
 				href='https://github.com/mkimitch/weather-app'

@@ -1,7 +1,7 @@
 import './DailyForecast.scss'
 
+import { FC } from 'react'
 import type { Daily, Unit } from '../../types/openWeatherAPI'
-import React, { FC } from 'react'
 
 import DateTime from '../DateTime/DateTime'
 

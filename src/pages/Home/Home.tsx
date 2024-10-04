@@ -1,6 +1,6 @@
 import './Home.scss'
 
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 import Destinations from '../../components/Destinations/Desitnations'
 import Search from '../../components/Search/Search'

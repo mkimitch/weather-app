@@ -6,7 +6,6 @@
 
 @import "./reset.scss";
 @import "./themes.scss";
-@import "./scrollbars.scss";
 
 // Theme application
 [data-theme="light"] {
@@ -16,6 +15,8 @@
 [data-theme="dark"] {
 	@include theme-colors("dark");
 }
+
+@import "./scrollbars.scss";
 
 html,
 body {
@@ -69,12 +70,12 @@ body {
 		color: var(--primary-color);
 		text-decoration: none;
 		transition: color 0.3s ease;
-	}
 
-	a:hover,
-	a:focus {
-		color: var(--secondary-accent);
-		text-decoration: underline;
+		&:hover,
+		&:focus {
+			color: var(--secondary-accent);
+			text-decoration: underline;
+		}
 	}
 
 	.container {
@@ -98,11 +99,6 @@ body {
 		border-radius: 1.5rem;
 		color: var(--text-color);
 		@include drop-shadow;
-
-		h2 {
-			color: var(--primary-accent);
-			margin-top: 0;
-		}
 	}
 
 	.scroll-container {
@@ -114,8 +110,8 @@ body {
 
 		.scroll-item {
 			align-items: start;
-			background-color: rgba(255 255 255 / 0.02);
-			border: 1px solid rgba(255 255 255 / 0.1);
+			background-color: oklch(1 0 89.88 / 0.02);
+			border: 1px solid oklch(1 0 89.88 / 0.1);
 			display: grid;
 			flex: 0 0 20rem;
 			gap: 1rem;

@@ -1,7 +1,9 @@
 .weather-detail {
 	display: grid;
-	gap: 20px;
+	gap: 2rem;
+	grid-auto-rows: min-content;
 	grid-template-columns: repeat(2, 1fr);
+	height: auto;
 
 	@for $i from 1 through 7 {
 		.grid-#{$i} {
@@ -26,6 +28,11 @@
 		}
 	}
 
+	& > * {
+		height: auto;
+		overflow: visible;
+	}
+
 	.card {
 		display: flex;
 		flex-direction: column;
@@ -40,7 +47,6 @@
 		}
 
 		h2 {
-			color: var(--secondary-accent);
 			font-size: 2.4rem;
 			margin-bottom: 1rem;
 		}

@@ -1,11 +1,11 @@
 import './WeatherDetail.scss'
 
+import { FC, useEffect, useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 import type {
 	OneCallResponse,
 	OpenWeatherAPI,
 } from '../../types/openWeatherAPI'
-import React, { FC, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
 
 import AdditionalInfo from '../../components/Weather/AdditionalInfo'
 import CurrentWeather from '../../components/Weather/CurrentWeather'
@@ -17,9 +17,9 @@ import Precipitation from '../../components/Weather/Precipitation'
 import SunMoonData from '../../components/Weather/SunMoonData'
 import WeatherAlerts from '../../components/Weather/WeatherAlerts'
 import WindInfo from '../../components/Weather/WindInfo'
-import { someTruthy } from '../../utils/utils'
 import useOpenWeatherAPI from '../../hooks/useOpenWeatherAPI'
 import useReverseGeocodingAPI from '../../hooks/useReverseGeocodingAPI'
+import { someTruthy } from '../../utils/utils'
 
 const units = 'imperial'
 

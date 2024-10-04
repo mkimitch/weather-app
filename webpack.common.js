@@ -63,6 +63,7 @@ module.exports = {
 			),
 		}),
 		new HtmlWebpackPlugin({
+			base: '/weather-app/',
 			template: './public/index.html',
 		}),
 		new CleanWebpackPlugin(),

@@ -1,5 +1,5 @@
+import { FC } from 'react'
 import type { CurrentWeather, Unit } from '../../types/openWeatherAPI'
-import React, { FC } from 'react'
 
 interface WindInfoProps {
 	current: CurrentWeather

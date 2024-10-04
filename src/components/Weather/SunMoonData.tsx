@@ -1,5 +1,5 @@
+import { FC } from 'react'
 import type { CurrentWeather, Daily } from '../../types/openWeatherAPI'
-import React, { FC } from 'react'
 
 import DateTime from '../DateTime/DateTime'
 

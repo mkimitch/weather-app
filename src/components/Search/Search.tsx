@@ -1,6 +1,6 @@
 import './Search.scss'
 
-import React, { FC, FocusEvent, KeyboardEvent, useState } from 'react'
+import { FC, FocusEvent, KeyboardEvent, useState } from 'react'
 
 import { DirectGeocodingResponse } from '../../types/openWeatherAPI'
 import Geolocation from '../Geolocation/Geolocation'
@@ -71,14 +71,20 @@ const Search: FC = () => {
 				onBlur={handleBlur}
 				role='search'
 			>
+				<label
+					className='sr-only'
+					htmlFor='search'
+				>
+					Enter location
+				</label>
 				<div className='search-wrapper'>
 					<input
 						aria-activedescendant={
 							activeIndex >= 0 ? `result-${activeIndex}` : undefined
 						}
-						aria-description='Search results will appear below'
-						aria-expanded={isOpen}
+						aria-describedby='search-desc'
 						aria-haspopup='listbox'
+						autoComplete='off'
 						id='search'
 						onChange={e => handleSearchInputChange(e.target.value)}
 						onKeyDown={handleKeyDown}
@@ -116,6 +122,12 @@ const Search: FC = () => {
 							))}
 					</ul>
 				)}
+				<span
+					className='sr-only'
+					id='search-desc'
+				>
+					Search results will appear below
+				</span>
 			</form>
 		</section>
 	)

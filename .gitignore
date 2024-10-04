@@ -5,8 +5,9 @@ node_modules/
 dist/
 build/
 
-# Ignore certificates folder
-certs/
+# Ignore `.crt` and `.key` files
+*.crt
+*.key
 
 # Webpack cache
 .cache/
