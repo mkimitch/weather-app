@@ -43,7 +43,7 @@ A simple and responsive weather web application that uses the [OpenWeather API](
 
 ## Live Demo
 
-A live version of this app is available at [url-goes-here].
+A live version of this app is available at [https://mkimitch.github.io/weather-app/](https://mkimitch.github.io/weather-app/).
 
 ## Getting Started
 
