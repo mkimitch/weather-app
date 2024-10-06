@@ -3,6 +3,8 @@ const common = require('./webpack.common.js')
 const fs = require('fs')
 const path = require('path')
 const dotenv = require('dotenv')
+const BundleAnalyzerPlugin =
+	require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 dotenv.config()
 
@@ -15,7 +17,6 @@ module.exports = merge(common, {
 		host: '0.0.0.0',
 		hot: true,
 		port: 8080,
-
 		server: useSSL
 			? {
 					type: 'https',
@@ -33,6 +34,12 @@ module.exports = merge(common, {
 			  },
 		static: './dist',
 	},
-	devtool: 'inline-source-map',
+	devtool: 'eval-source-map',
 	mode: 'development',
+	plugins: [
+		new BundleAnalyzerPlugin({
+			analyzerMode: 'server',
+			openAnalyzer: true,
+		}),
+	],
 })

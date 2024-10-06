@@ -2,6 +2,7 @@ button.theme-toggle {
 	align-items: center;
 	aspect-ratio: 1 / 1;
 	border-radius: 100%;
+	clip-path: border-box;
 	display: flex;
 	justify-content: center;
 	width: 4rem;

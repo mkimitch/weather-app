@@ -1,5 +1,7 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './ThemeToggle.scss'
 
+import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons'
 import { FC, useEffect, useState } from 'react'
 
 const ThemeToggle: FC = () => {
@@ -43,9 +45,15 @@ const ThemeToggle: FC = () => {
 			onClick={toggleTheme}
 		>
 			{theme === 'light' ? (
-				<span className='wi wi-fw wi-night-clear'></span>
+				<FontAwesomeIcon
+					icon={faMoon}
+					size='xl'
+				/>
 			) : (
-				<span className='wi wi-fw wi-day-sunny'></span>
+				<FontAwesomeIcon
+					icon={faSun}
+					size='xl'
+				/>
 			)}
 		</button>
 	)

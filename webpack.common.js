@@ -66,6 +66,11 @@ module.exports = {
 			base: '/weather-app/',
 			template: './public/index.html',
 		}),
+		new HtmlWebpackPlugin({
+			base: '/weather-app/',
+			filename: '404.html',
+			template: './public/index.html',
+		}),
 		new CleanWebpackPlugin(),
 		new Dotenv(),
 	],

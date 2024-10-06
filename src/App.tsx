@@ -1,13 +1,19 @@
 import './styles/global.scss'
 
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import {
+	BrowserRouter,
+	Route,
+	BrowserRouter as Router,
+	Routes,
+} from 'react-router-dom'
 
-import { FC } from 'react'
+import { FC, lazy, Suspense } from 'react'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
-import HomePage from './pages/Home/Home'
-import WeatherDetail from './pages/WeatherDetail/WeatherDetail'
 
+const HomePage = lazy(() => import('./pages/Home/Home'))
+const WeatherDetail = lazy(() => import('./pages/WeatherDetail/WeatherDetail'))
+const basename = process.env.NODE_ENV === 'production' ? '/weather-app' : ''
 const App: FC = () => {
 	return (
 		<div className='weather-app'>
@@ -17,7 +23,7 @@ const App: FC = () => {
 			>
 				Skip to main content
 			</a>
-			<Router>
+			<BrowserRouter basename={basename}>
 				<Header />
 				<main
 					className='main'
@@ -25,18 +31,20 @@ const App: FC = () => {
 					role='main'
 					tabIndex={0}
 				>
-					<Routes>
-						<Route
-							element={<HomePage />}
-							path='/'
-						/>
-						<Route
-							element={<WeatherDetail />}
-							path='/weather/:latitude/:longitude'
-						/>
-					</Routes>
+					<Suspense fallback={<div className='ellipses'>Loading</div>}>
+						<Routes>
+							<Route
+								element={<HomePage />}
+								path='/'
+							/>
+							<Route
+								element={<WeatherDetail />}
+								path='/weather/:latitude/:longitude'
+							/>
+						</Routes>
+					</Suspense>
 				</main>
-			</Router>
+			</BrowserRouter>
 			<Footer />
 		</div>
 	)

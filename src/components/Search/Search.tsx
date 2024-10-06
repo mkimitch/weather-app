@@ -2,11 +2,11 @@ import './Search.scss'
 
 import { FC, FocusEvent, KeyboardEvent, useState } from 'react'
 
-import { DirectGeocodingResponse } from '../../types/openWeatherAPI'
-import Geolocation from '../Geolocation/Geolocation'
+import { useNavigate } from 'react-router-dom'
 import useDebounce from '../../hooks/useDebounce'
 import useGeocodingAPI from '../../hooks/useGeocodingAPI'
-import { useNavigate } from 'react-router-dom'
+import { DirectGeocodingResponse } from '../../types/openWeatherAPI'
+import Geolocation from '../Geolocation/Geolocation'
 
 const Search: FC = () => {
 	const navigate = useNavigate()

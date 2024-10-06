@@ -1,7 +1,9 @@
 import { FC, useEffect } from 'react'
 
-import useGeolocation from '../../hooks/useGeolocation'
+import { faLocationCrosshairs } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router-dom'
+import useGeolocation from '../../hooks/useGeolocation'
 
 const Geolocation: FC = () => {
 	const navigate = useNavigate()
@@ -24,7 +26,10 @@ const Geolocation: FC = () => {
 				onClick={handleButtonClick}
 				type='button'
 			>
-				<i className='fas fa-location-crosshairs'></i>
+				<FontAwesomeIcon
+					icon={faLocationCrosshairs}
+					size='xl'
+				/>
 			</button>
 			{error && <div>{error}</div>}
 		</>
