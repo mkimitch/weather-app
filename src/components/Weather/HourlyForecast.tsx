@@ -17,6 +17,7 @@ const HourlyForecast: FC<HourlyProps> = ({ hourly, timezone, units }) => {
 			<h2>Hourly Forecast</h2>
 			<div
 				className='scroll-container'
+				role='list'
 				tabIndex={0}
 			>
 				{hourly.slice(0, 24).map(hour => {
@@ -25,6 +26,7 @@ const HourlyForecast: FC<HourlyProps> = ({ hourly, timezone, units }) => {
 						<div
 							className={`scroll-item`}
 							key={dt}
+							role='listitem'
 						>
 							<DateTime
 								datetime={new Date(dt * 1000)}

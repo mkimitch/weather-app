@@ -2,7 +2,7 @@ import './Home.scss'
 
 import { FC } from 'react'
 
-import Destinations from '../../components/Destinations/Desitnations'
+import Destinations from '../../components/Destinations/Destinations'
 import Search from '../../components/Search/Search'
 
 const Home: FC = () => {
