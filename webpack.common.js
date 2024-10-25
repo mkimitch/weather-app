@@ -1,28 +1,29 @@
-const webpack = require('webpack')
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
+const webpack = require( 'webpack' )
+const path = require( 'path' )
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' )
+const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' )
+const Dotenv = require( 'dotenv-webpack' )
+const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 
 module.exports = {
 	entry: './src/index.tsx',
 	output: {
 		filename: 'bundle.js',
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve( __dirname, 'dist' ),
 		publicPath: '/weather-app/',
 	},
 	resolve: {
 		alias: {
-			'@styles': path.resolve(__dirname, 'src/styles'),
+			'@styles': path.resolve( __dirname, 'src/styles' ),
 		},
-		extensions: ['.ts', '.tsx', '.js'],
+		extensions: [ '.ts', '.tsx', '.js' ],
 	},
 	module: {
 		rules: [
 			{
 				exclude: /node_modules/,
 				test: /\.tsx?$/,
-				use: ['babel-loader', 'ts-loader'],
+				use: [ 'babel-loader', 'ts-loader' ],
 			},
 			{
 				test: /\.s[ac]ss$/,
@@ -57,19 +58,19 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new HtmlWebpackPlugin({
+		new HtmlWebpackPlugin( {
 			base: '/weather-app/',
 			template: './public/index.html',
-		}),
-		new HtmlWebpackPlugin({
+		} ),
+		new HtmlWebpackPlugin( {
 			base: '/weather-app/',
 			filename: '404.html',
 			template: './public/index.html',
-		}),
+		} ),
 		new CleanWebpackPlugin(),
 		new Dotenv(),
-		new CopyWebpackPlugin({
-			patterns: [{ from: 'public', to: '' }],
-		}),
+		new CopyWebpackPlugin( {
+			patterns: [ { from: 'public', to: '' } ],
+		} ),
 	],
 }
