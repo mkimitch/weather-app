@@ -7,9 +7,9 @@ const Dotenv = require('dotenv-webpack')
 module.exports = {
 	entry: './src/index.tsx',
 	output: {
-		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
-		publicPath: '/',
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: '/weather-app/',
 	},
 	resolve: {
 		alias: {
@@ -20,9 +20,9 @@ module.exports = {
 	module: {
 		rules: [
 			{
+				exclude: /node_modules/,
 				test: /\.tsx?$/,
 				use: ['babel-loader', 'ts-loader'],
-				exclude: /node_modules/,
 			},
 			{
 				test: /\.s[ac]ss$/,
@@ -41,8 +41,8 @@ module.exports = {
 					{
 						loader: 'sass-loader',
 						options: {
-							sourceMap: true,
 							additionalData: `@import "@styles/mixins.scss";`,
+							sourceMap: true,
 						},
 					},
 				],
@@ -68,5 +68,8 @@ module.exports = {
 		}),
 		new CleanWebpackPlugin(),
 		new Dotenv(),
+		new CopyWebpackPlugin({
+			patterns: [{ from: 'public', to: '' }],
+		}),
 	],
 }
