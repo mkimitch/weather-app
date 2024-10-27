@@ -43,8 +43,10 @@ module.exports = merge( common, {
 	mode: 'development',
 	plugins: [
 		new BundleAnalyzerPlugin( {
-			analyzerMode: 'server',
+			// analyzerMode: 'server',
+			analyzerMode: 'static',
 			openAnalyzer: true,
+			reportFilename: 'bundle-report.html',
 		} ),
 	],
 } )

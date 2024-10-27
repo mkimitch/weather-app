@@ -11,7 +11,7 @@
 		}
 	}
 
-	@include responsive-min(mobile) {
+	@include mixins.responsive-min(mobile) {
 		grid-template-columns: repeat(2, 1fr);
 
 		.grid-2,
@@ -20,7 +20,7 @@
 		}
 	}
 
-	@include responsive-min(tablet) {
+	@include mixins.responsive-min(tablet) {
 		grid-template-columns: repeat(3, 1fr);
 
 		.grid-4 {

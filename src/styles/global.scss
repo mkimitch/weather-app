@@ -1,20 +1,21 @@
-@import "~weather-icons/sass/weather-icons";
-@import "~weather-icons/sass/weather-icons-wind";
-@import "~flag-icons/sass/flag-icons";
+@use "sass:meta";
+@use "~weather-icons/sass/weather-icons";
+@use "~weather-icons/sass/weather-icons-wind";
+@use "~flag-icons/sass/flag-icons";
 
-@import "./reset.scss";
-@import "./themes.scss";
+@use "reset.scss";
+@use "themes.scss";
 
 // Theme application
 [data-theme="light"] {
-	@include theme-colors("light");
+	@include mixins.theme-colors("light");
 }
 
 [data-theme="dark"] {
-	@include theme-colors("dark");
+	@include mixins.theme-colors("dark");
 }
 
-@import "./scrollbars.scss";
+@include meta.load-css("scrollbars.scss");
 
 html,
 body {
@@ -96,7 +97,7 @@ body {
 		background: var(--card-background);
 		border-radius: 1.5rem;
 		color: var(--text-color);
-		@include drop-shadow;
+		@include mixins.drop-shadow;
 	}
 
 	.scroll-container {
@@ -116,7 +117,7 @@ body {
 			grid-template-columns: 1fr;
 			padding: 2rem;
 			position: relative;
-			@include rounded-corners;
+			@include mixins.rounded-corners;
 		}
 	}
 
@@ -138,7 +139,7 @@ body {
 		transition:
 			background 0.3s ease,
 			color 0.3s ease;
-		@include rounded-corners;
+		@include mixins.rounded-corners;
 
 		&:hover {
 			opacity: 0.9;
@@ -148,7 +149,7 @@ body {
 
 // For content which should only be accessible by a screen reader
 .sr-only {
-	@include sr-only;
+	@include mixins.sr-only;
 }
 
 // For content which should only be accessible by a screen reader and keyboard navigation (if focusable)
@@ -164,7 +165,7 @@ body {
 }
 
 .ellipses {
-	@include ellipsis-animation;
+	@include mixins.ellipsis-animation;
 }
 
 .fi::before {

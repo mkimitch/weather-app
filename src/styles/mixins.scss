@@ -68,7 +68,7 @@
 }
 
 @mixin theme-colors($theme) {
-	$theme-map: if($theme == "light", $light-theme, $dark-theme);
+	$theme-map: if($theme == "light", themes.$light-theme, themes.$dark-theme);
 
 	@each $name, $value in $theme-map {
 		--#{$name}: #{$value};
@@ -88,19 +88,19 @@ $breakpoints: (
 );
 
 @mixin responsive-min($breakpoint) {
-	@media (min-width: map-get($breakpoints, $breakpoint)) {
+	@media (min-width: map.get($breakpoints, $breakpoint)) {
 		@content;
 	}
 }
 
 @mixin responsive-max($breakpoint) {
-	@media (max-width: map-get($breakpoints, $breakpoint)) {
+	@media (max-width: map.get($breakpoints, $breakpoint)) {
 		@content;
 	}
 }
 
 @mixin responsive-min-max($min, $max) {
-	@media (min-width: map-get($breakpoints, $min)) and (max-width: map-get($breakpoints, $max)) {
+	@media (min-width: map.get($breakpoints, $min)) and (max-width: map.get($breakpoints, $max)) {
 		@content;
 	}
 }

@@ -1,8 +1,7 @@
-const webpack = require( 'webpack' )
-const path = require( 'path' )
-const HtmlWebpackPlugin = require( 'html-webpack-plugin' )
-const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' )
-const Dotenv = require( 'dotenv-webpack' )
+const path = require( 'path' );
+const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
+const Dotenv = require( 'dotenv-webpack' );
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 
 module.exports = {
@@ -21,8 +20,8 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				exclude: /node_modules/,
 				test: /\.tsx?$/,
+				exclude: /node_modules/,
 				use: [ 'babel-loader', 'ts-loader' ],
 			},
 			{
@@ -35,15 +34,13 @@ module.exports = {
 					},
 					{
 						loader: 'resolve-url-loader',
-						options: {
-							sourceMap: true,
-						},
+						options: { sourceMap: true },
 					},
 					{
 						loader: 'sass-loader',
 						options: {
-							additionalData: `@import "@styles/mixins.scss";`,
 							sourceMap: true,
+							additionalData: `@use "@styles/mixins" as mixins;`,
 						},
 					},
 				],
@@ -58,19 +55,24 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new HtmlWebpackPlugin( {
-			base: '/weather-app/',
-			template: './public/index.html',
-		} ),
-		new HtmlWebpackPlugin( {
-			base: '/weather-app/',
-			filename: '404.html',
-			template: './public/index.html',
-		} ),
 		new CleanWebpackPlugin(),
 		new Dotenv(),
+		new HtmlWebpackPlugin( {
+			base: '/weather-app/',
+			template: './templates/index.html',
+			filename: 'index.html',
+			inject: true,
+		} ),
+		new HtmlWebpackPlugin( {
+			base: '/weather-app/',
+			template: './templates/index.html',
+			filename: '404.html',
+			inject: true,
+		} ),
 		new CopyWebpackPlugin( {
-			patterns: [ { from: 'public', to: '' } ],
+			patterns: [
+				{ from: 'public', to: '', filter: ( resourcePath ) => !resourcePath.endsWith( 'index.html' ) },
+			],
 		} ),
 	],
-}
+};

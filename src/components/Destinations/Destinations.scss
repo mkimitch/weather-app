@@ -31,7 +31,7 @@ section.destinations {
 				height: 100%;
 				transition: all 0.3s ease;
 				width: 100%;
-				@include rounded-corners;
+				@include mixins.rounded-corners;
 
 				&:has(a:hover),
 				&:has(a:focus) {
