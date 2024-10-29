@@ -1,5 +1,6 @@
 import './styles/global.scss'
 
+import { FC, Suspense, lazy } from 'react'
 import {
 	BrowserRouter,
 	Route,
@@ -7,13 +8,13 @@ import {
 	Routes,
 } from 'react-router-dom'
 
-import { FC, lazy, Suspense } from 'react'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 
 const HomePage = lazy(() => import('./pages/Home/Home'))
 const WeatherDetail = lazy(() => import('./pages/WeatherDetail/WeatherDetail'))
-const basename = process.env.NODE_ENV === 'production' ? '/weather-app' : ''
+const basename = '/weather-app'
+
 const App: FC = () => {
 	return (
 		<div className='weather-app'>

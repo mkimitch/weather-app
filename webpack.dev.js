@@ -16,7 +16,7 @@ module.exports = merge( common, {
 		historyApiFallback: {
 			disableDotRule: true,
 			rewrites: [
-				{ from: /^\/weather-app\/[^.]+$/, to: '/weather-app/index.html' },
+				{ from: /^\/weather-app\/.*$/, to: '/weather-app/index.html' },
 			],
 		},
 		host: '0.0.0.0',
@@ -41,6 +41,9 @@ module.exports = merge( common, {
 	},
 	devtool: 'eval-source-map',
 	mode: 'development',
+	output: {
+		publicPath: '/weather-app/',
+	},
 	plugins: [
 		new BundleAnalyzerPlugin( {
 			// analyzerMode: 'server',

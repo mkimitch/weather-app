@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@use "./themes" as themes;
+@use "./themes" as *;
 
 @mixin rounded-corners {
 	border-radius: 0.8rem;
@@ -68,7 +68,7 @@
 }
 
 @mixin theme-colors($theme) {
-	$theme-map: if($theme == "light", themes.$light-theme, themes.$dark-theme);
+	$theme-map: if($theme == "light", $light-theme, $dark-theme);
 
 	@each $name, $value in $theme-map {
 		--#{$name}: #{$value};

@@ -3,7 +3,10 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"license": "GPL-3.0",
-	"sideEffects": false,
+	"sideEffects": [
+		"*.scss",
+		"*.css"
+	],
 	"scripts": {
 		"build": "webpack --config webpack.prod.js",
 		"deploy": "gh-pages -d dist",

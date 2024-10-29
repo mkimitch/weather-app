@@ -1,21 +1,19 @@
-@use "sass:meta";
+@use "./scrollbars.scss";
 @use "~weather-icons/sass/weather-icons";
 @use "~weather-icons/sass/weather-icons-wind";
 @use "~flag-icons/sass/flag-icons";
 
-@use "reset.scss";
-@use "themes.scss";
+@use "./reset.scss";
+@use "./themes.scss";
 
 // Theme application
 [data-theme="light"] {
-	@include mixins.theme-colors("light");
+	@include theme-colors("light");
 }
 
 [data-theme="dark"] {
-	@include mixins.theme-colors("dark");
+	@include theme-colors("dark");
 }
-
-@include meta.load-css("scrollbars.scss");
 
 html,
 body {
@@ -37,8 +35,7 @@ body {
 	background: linear-gradient(to bottom right, var(--background-gradient-start), var(--background-gradient-end));
 	color: var(--text-color);
 	display: grid;
-	font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-		"Noto Color Emoji";
+	font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 	gap: 3rem;
 	grid-auto-rows: auto 1fr auto;
 	height: 100%;
@@ -97,7 +94,7 @@ body {
 		background: var(--card-background);
 		border-radius: 1.5rem;
 		color: var(--text-color);
-		@include mixins.drop-shadow;
+		@include drop-shadow;
 	}
 
 	.scroll-container {
@@ -117,7 +114,7 @@ body {
 			grid-template-columns: 1fr;
 			padding: 2rem;
 			position: relative;
-			@include mixins.rounded-corners;
+			@include rounded-corners;
 		}
 	}
 
@@ -139,7 +136,7 @@ body {
 		transition:
 			background 0.3s ease,
 			color 0.3s ease;
-		@include mixins.rounded-corners;
+		@include rounded-corners;
 
 		&:hover {
 			opacity: 0.9;
@@ -149,7 +146,7 @@ body {
 
 // For content which should only be accessible by a screen reader
 .sr-only {
-	@include mixins.sr-only;
+	@include sr-only;
 }
 
 // For content which should only be accessible by a screen reader and keyboard navigation (if focusable)
@@ -165,7 +162,7 @@ body {
 }
 
 .ellipses {
-	@include mixins.ellipsis-animation;
+	@include ellipsis-animation;
 }
 
 .fi::before {

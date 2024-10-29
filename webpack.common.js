@@ -40,7 +40,7 @@ module.exports = {
 						loader: 'sass-loader',
 						options: {
 							sourceMap: true,
-							additionalData: `@use "@styles/mixins" as mixins;`,
+							additionalData: `@use "@styles/mixins" as *;`,
 						},
 					},
 				],
