@@ -1,3 +1,9 @@
+> ### 👨🏼‍💻 Currently Available for Hire!
+>
+> Hi there! 👋 I'm currently looking for new opportunities as a Senior JavaScript Engineer or Frontend Developer. If you're interested in collaborating or hiring someone with expertise in JavaScript, TypeScript, React, and other frontend technologies, feel free to reach out to me!
+>
+> You can connect with me on [LinkedIn](https://www.linkedin.com/in/mkimitch/) or email me directly at [mark.kimitch@gmail.com](mailto:mark.kimitch@gmail.com).
+
 # Weather App 🌦️
 
 **Author**: Mark Kimitch | **Email**: [mark.kimitch@gmail.com](mailto:mark.kimitch@gmail.com) | **Version**: 1.0.0 | **License**: [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html)
