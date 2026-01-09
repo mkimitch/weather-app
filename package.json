@@ -13,8 +13,7 @@
     "postbuild": "cp dist/index.html dist/404.html",
     "predeploy": "yarn build",
     "start": "webpack serve --config webpack.dev.js",
-    "test": "jest",
-    "preinstall": "node preinstall.js"
+    "test": "jest"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
