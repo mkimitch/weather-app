@@ -1,6 +1,6 @@
 > ### 👨🏼‍💻 Currently Available for Hire!
 >
-> Hi there! 👋 I'm currently looking for new opportunities as a Senior JavaScript Engineer or Frontend Developer. If you're interested in collaborating or hiring someone with expertise in JavaScript, TypeScript, React, and other frontend technologies, feel free to reach out to me!
+> Hi there! 👋 I'm currently looking for new opportunities as a Senior JavaScript Engineer or Front-end Developer. If you're interested in collaborating or hiring someone with expertise in JavaScript, TypeScript, React, and other front-end technologies, feel free to reach out to me!
 >
 > You can connect with me on [LinkedIn](https://www.linkedin.com/in/mkimitch/) or email me directly at [mark.kimitch@gmail.com](mailto:mark.kimitch@gmail.com).
 
