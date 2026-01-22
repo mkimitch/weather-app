@@ -4,12 +4,15 @@ const Dotenv = require( 'dotenv-webpack' );
 const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 
+const isDevServer = Boolean( process.env.WEBPACK_SERVE );
+const publicPath = isDevServer ? '/' : '/weather-app/';
+
 module.exports = {
 	entry: './src/index.tsx',
 	output: {
 		filename: 'bundle.js',
 		path: path.resolve( __dirname, 'dist' ),
-		publicPath: '/weather-app/',
+		publicPath,
 	},
 	resolve: {
 		alias: {
@@ -58,13 +61,13 @@ module.exports = {
 		new CleanWebpackPlugin(),
 		new Dotenv(),
 		new HtmlWebpackPlugin( {
-			base: '/weather-app/',
+			base: publicPath,
 			template: './templates/index.html',
 			filename: 'index.html',
 			inject: true,
 		} ),
 		new HtmlWebpackPlugin( {
-			base: '/weather-app/',
+			base: publicPath,
 			template: './templates/index.html',
 			filename: '404.html',
 			inject: true,

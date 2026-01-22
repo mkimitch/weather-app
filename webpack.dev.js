@@ -15,9 +15,6 @@ module.exports = merge( common, {
 		allowedHosts: 'all',
 		historyApiFallback: {
 			disableDotRule: true,
-			rewrites: [
-				{ from: /^\/weather-app\/.*$/, to: '/weather-app/index.html' },
-			],
 		},
 		host: '0.0.0.0',
 		hot: true,
@@ -38,11 +35,20 @@ module.exports = merge( common, {
 				type: 'http',
 			},
 		static: './dist',
+		setupMiddlewares: ( middlewares, devServer ) => {
+			if ( !devServer?.app ) return middlewares
+
+			devServer.app.get( '/weather-app', ( _req, res ) => {
+				res.redirect( '/' )
+			} )
+
+			return middlewares
+		},
 	},
 	devtool: 'eval-source-map',
 	mode: 'development',
 	output: {
-		publicPath: '/weather-app/',
+		publicPath: '/',
 	},
 	plugins: [
 		new BundleAnalyzerPlugin( {

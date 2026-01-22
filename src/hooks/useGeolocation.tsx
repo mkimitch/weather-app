@@ -14,20 +14,31 @@ const useGeolocation = () => {
 		timeout: 60_000,
 	}
 
-	const success = (position: GeolocationPosition): void =>
+	const success = (position: GeolocationPosition): void => {
+		setError(null)
 		setGeolocation(position)
+	}
 
 	const handleError = (err: GeolocationPositionError): void => {
+		setGeolocation(null)
 		setError(`${err.message} (${err.code})`)
-		console.error(`Error getting user's location (${err.code}): ${err.message}`)
+		if (process.env.NODE_ENV !== 'production') {
+			console.error(
+				`Error getting user's location (${err.code}): ${err.message}`
+			)
+		}
 	}
 
 	const getGeolocation = () => {
+		setError(null)
 		if ('geolocation' in navigator) {
 			navigator.geolocation.getCurrentPosition(success, handleError, options)
 		} else {
+			setGeolocation(null)
 			setError(ERROR_MESSAGE)
-			console.warn(ERROR_MESSAGE)
+			if (process.env.NODE_ENV !== 'production') {
+				console.warn(ERROR_MESSAGE)
+			}
 		}
 	}
 

@@ -6,21 +6,33 @@ import { useNavigate } from 'react-router-dom'
 import useDebounce from '../../hooks/useDebounce'
 import useGeocodingAPI from '../../hooks/useGeocodingAPI'
 import { DirectGeocodingResponse } from '../../types/openWeatherAPI'
+import Alert from '../Alert/Alert'
 import Geolocation from '../Geolocation/Geolocation'
 
 const Search: FC = () => {
 	const navigate = useNavigate()
 	const [query, setQuery] = useState('')
 	const [activeIndex, setActiveIndex] = useState<number>(-1)
+	const [geolocationError, setGeolocationError] = useState<string | null>(null)
 	const [isOpen, setIsOpen] = useState(false)
 
 	const debouncedQuery = useDebounce(query, 500)
 	const { data, error, loading } = useGeocodingAPI(debouncedQuery)
+	const shouldShowResults =
+		isOpen && !error && (loading || Boolean(data && data.length > 0))
+
+	const handleGeolocationErrorChange = (nextError: string | null) => {
+		setGeolocationError(nextError)
+		if (nextError) {
+			setIsOpen(false)
+		}
+	}
 
 	const handleSearchInputChange = (value: string) => {
+		setGeolocationError(null)
 		setQuery(value)
 		setActiveIndex(-1)
-		setIsOpen(true)
+		setIsOpen(Boolean(value))
 	}
 
 	const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -82,7 +94,9 @@ const Search: FC = () => {
 						aria-activedescendant={
 							activeIndex >= 0 ? `result-${activeIndex}` : undefined
 						}
+						aria-controls='popup'
 						aria-describedby='search-desc'
+						aria-expanded={shouldShowResults}
 						aria-haspopup='listbox'
 						autoComplete='off'
 						id='search'
@@ -93,11 +107,16 @@ const Search: FC = () => {
 						type='search'
 						value={query}
 					/>
-					<Geolocation />
+					<Geolocation onErrorChange={handleGeolocationErrorChange} />
 				</div>
 
-				{error && <div>{error}</div>}
-				{isOpen && (
+				{geolocationError && (
+					<Alert title='Unable to use your location'>{geolocationError}</Alert>
+				)}
+				{error && debouncedQuery && (
+					<Alert title='Unable to search for that location'>{error}</Alert>
+				)}
+				{shouldShowResults && (
 					<ul
 						id='popup'
 						role='listbox'

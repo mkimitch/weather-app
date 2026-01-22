@@ -5,7 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router-dom'
 import useGeolocation from '../../hooks/useGeolocation'
 
-const Geolocation: FC = () => {
+interface GeolocationProps {
+	onErrorChange?: (error: string | null) => void
+}
+
+const Geolocation: FC<GeolocationProps> = ({ onErrorChange }) => {
 	const navigate = useNavigate()
 	const { geolocation, error, getGeolocation } = useGeolocation()
 
@@ -18,21 +22,22 @@ const Geolocation: FC = () => {
 		}
 	}, [geolocation, navigate])
 
+	useEffect(() => {
+		onErrorChange?.(error)
+	}, [error, onErrorChange])
+
 	return (
-		<>
-			<button
-				aria-label='Use my location'
-				className='geolocation'
-				onClick={handleButtonClick}
-				type='button'
-			>
-				<FontAwesomeIcon
-					icon={faLocationCrosshairs}
-					size='xl'
-				/>
-			</button>
-			{error && <div>{error}</div>}
-		</>
+		<button
+			aria-label='Use my location'
+			className='geolocation'
+			onClick={handleButtonClick}
+			type='button'
+		>
+			<FontAwesomeIcon
+				icon={faLocationCrosshairs}
+				size='xl'
+			/>
+		</button>
 	)
 }
 
