@@ -3,9 +3,10 @@ import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 
 import React from 'react'
-import WeatherDetail from '../pages/WeatherDetail/WeatherDetail'
 import mockWeatherData from '../__mocks__/mockWeatherData.json'
+import useNwsWeatherAPI from '../hooks/useNwsWeatherAPI'
 import useOpenWeatherAPI from '../hooks/useOpenWeatherAPI'
+import WeatherDetail from '../pages/WeatherDetail/WeatherDetail'
 
 // Mock React Router hooks
 jest.mock('react-router-dom', () => ({
@@ -17,6 +18,10 @@ jest.mock('react-router-dom', () => ({
 
 // Mock custom hooks
 jest.mock('../hooks/useOpenWeatherAPI')
+jest.mock('../hooks/useNwsWeatherAPI', () => ({
+	__esModule: true,
+	default: jest.fn(),
+}))
 jest.mock('../hooks/useReverseGeocodingAPI', () => ({
 	__esModule: true,
 	default: jest.fn(() => ({
@@ -27,7 +32,25 @@ jest.mock('../hooks/useReverseGeocodingAPI', () => ({
 }))
 
 describe('WeatherDetail Component', () => {
+	beforeEach(() => {
+		localStorage.clear()
+		;(useOpenWeatherAPI as jest.Mock).mockReset()
+		;(useNwsWeatherAPI as jest.Mock).mockReset()
+		;(useOpenWeatherAPI as jest.Mock).mockReturnValue({
+			data: {},
+			error: undefined,
+			loading: false,
+		})
+		;(useNwsWeatherAPI as jest.Mock).mockReturnValue({
+			data: null,
+			error: null,
+			loading: false,
+		})
+	})
+
 	it('should render the weather data correctly', () => {
+		localStorage.setItem('openweather_api_key', 'test-key')
+
 		// Mock weather data as available
 		;(useOpenWeatherAPI as jest.Mock).mockReturnValue({
 			data: mockWeatherData,
@@ -50,6 +73,8 @@ describe('WeatherDetail Component', () => {
 	})
 
 	it('should display a loading message when data is loading', () => {
+		localStorage.setItem('openweather_api_key', 'test-key')
+
 		// Mock loading state
 		;(useOpenWeatherAPI as jest.Mock).mockReturnValue({
 			data: null,
@@ -73,6 +98,8 @@ describe('WeatherDetail Component', () => {
 	})
 
 	it('should display an error message if there is an API error', () => {
+		localStorage.setItem('openweather_api_key', 'test-key')
+
 		// Mock error state
 		;(useOpenWeatherAPI as jest.Mock).mockReturnValue({
 			data: null,
@@ -93,5 +120,70 @@ describe('WeatherDetail Component', () => {
 		})
 
 		rerender(<WeatherDetail />)
+	})
+
+	it('should render NWS fallback data when OpenWeather API key is not provided', () => {
+		;(useNwsWeatherAPI as jest.Mock).mockReturnValue({
+			data: {
+				dailyPeriods: [
+					{
+						detailedForecast: 'Sunny',
+						endTime: '2026-01-22T18:00:00-06:00',
+						icon: '',
+						isDaytime: true,
+						name: 'Today',
+						number: 1,
+						shortForecast: 'Sunny',
+						startTime: '2026-01-22T12:00:00-06:00',
+						temperature: 55,
+						temperatureUnit: 'F',
+						windDirection: 'NW',
+						windSpeed: '5 mph',
+					},
+				],
+				hourlyPeriods: [
+					{
+						detailedForecast: 'Clear',
+						endTime: '2026-01-22T13:00:00-06:00',
+						icon: '',
+						isDaytime: true,
+						name: 'Noon',
+						number: 1,
+						shortForecast: 'Clear',
+						startTime: '2026-01-22T12:00:00-06:00',
+						temperature: 55,
+						temperatureUnit: 'F',
+						windDirection: 'NW',
+						windSpeed: '5 mph',
+					},
+				],
+				location: { city: 'Minneapolis', state: 'MN' },
+				timeZone: 'America/Chicago',
+			},
+			error: null,
+			loading: false,
+		})
+
+		render(<WeatherDetail />)
+
+		expect(useOpenWeatherAPI).toHaveBeenCalledWith(undefined, undefined)
+		expect(useNwsWeatherAPI).toHaveBeenCalledWith('44.7123', '-93.1689')
+		expect(screen.getByText(/Wind:\s*5 mph NW/i)).toBeInTheDocument()
+		expect(screen.queryByTestId('temperature')).not.toBeInTheDocument()
+	})
+
+	it('should display an error message if NWS returns an error', () => {
+		;(useNwsWeatherAPI as jest.Mock).mockReturnValue({
+			data: null,
+			error: 'NWS API Error',
+			loading: false,
+		})
+
+		render(<WeatherDetail />)
+
+		expect(screen.getByTestId('error')).toBeInTheDocument()
+		expect(
+			screen.getByText(/NWS API Error: NWS API Error/i)
+		).toBeInTheDocument()
 	})
 })

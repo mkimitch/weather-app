@@ -34,6 +34,8 @@ Thumbs.db
 .env.development.local
 .env.test.local
 .env.production.local
+.env.*
+!.env.example
 
 # Editor directories and files
 .idea/
@@ -49,6 +51,7 @@ gh-pages/
 # Temporary files
 *.tmp
 *.temp
+*.diff
 
 # IDE files
 *.iml

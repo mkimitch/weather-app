@@ -1,25 +1,91 @@
 import { FC, useState } from 'react'
 
-const Settings: FC = () => {
+import Alert from '../Alert/Alert'
+
+interface SettingsProps {
+	onClose?: () => void
+}
+
+const Settings: FC<SettingsProps> = ({ onClose }) => {
 	const [apiKey, setApiKey] = useState(
 		localStorage.getItem('openweather_api_key') || ''
 	)
+	const [statusMessage, setStatusMessage] = useState<string | null>(null)
+	const [statusVariant, setStatusVariant] = useState<
+		'success' | 'info' | 'warning' | 'error'
+	>('info')
+
+	const notifyApiKeyUpdated = () => {
+		window.dispatchEvent(new Event('openweather_api_key_updated'))
+	}
 
 	const handleSave = () => {
-		localStorage.setItem('openweather_api_key', apiKey)
-		alert('API Key saved!')
+		const trimmedApiKey = apiKey.trim()
+		if (!trimmedApiKey) {
+			localStorage.removeItem('openweather_api_key')
+			setApiKey('')
+			setStatusVariant('info')
+			setStatusMessage('API key cleared. Using NWS (US-only).')
+			notifyApiKeyUpdated()
+			return
+		}
+
+		localStorage.setItem('openweather_api_key', trimmedApiKey)
+		setApiKey(trimmedApiKey)
+		setStatusVariant('success')
+		setStatusMessage('API key saved.')
+		notifyApiKeyUpdated()
+	}
+
+	const handleClear = () => {
+		localStorage.removeItem('openweather_api_key')
+		setApiKey('')
+		setStatusVariant('info')
+		setStatusMessage('API key cleared. Using NWS (US-only).')
+		notifyApiKeyUpdated()
 	}
 
 	return (
 		<div className='settings'>
-			<h2>Settings</h2>
+			<div>
+				<h2>Settings</h2>
+				{onClose ? (
+					<button
+						onClick={onClose}
+						type='button'
+					>
+						Close
+					</button>
+				) : null}
+			</div>
+			{statusMessage ? (
+				<Alert
+					title='Settings'
+					variant={statusVariant}
+				>
+					{statusMessage}
+				</Alert>
+			) : null}
 			<input
 				onChange={e => setApiKey(e.target.value)}
 				placeholder='Enter your OpenWeather API Key'
-				type='text'
+				type='password'
 				value={apiKey}
 			/>
-			<button onClick={handleSave}>Save API Key</button>
+			<div>
+				<button
+					onClick={handleSave}
+					type='button'
+				>
+					Save API Key
+				</button>
+				<button
+					onClick={handleClear}
+					type='button'
+				>
+					Clear
+				</button>
+			</div>
 		</div>
 	)
 }

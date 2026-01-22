@@ -1,19 +1,36 @@
 import './styles/global.scss'
 
 import { FC, Suspense, lazy } from 'react'
-import {
-	BrowserRouter,
-	Route,
-	BrowserRouter as Router,
-	Routes,
-} from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 
 const HomePage = lazy(() => import('./pages/Home/Home'))
 const WeatherDetail = lazy(() => import('./pages/WeatherDetail/WeatherDetail'))
-const basename = '/weather-app'
+
+const getBasename = (): string | undefined => {
+	const baseHref = document.querySelector('base')?.getAttribute('href')
+
+	if (!baseHref) return undefined
+
+	const normalizedBaseHref = baseHref.endsWith('/')
+		? baseHref.slice(0, -1)
+		: baseHref
+
+	if (normalizedBaseHref === '' || normalizedBaseHref === '/') return undefined
+
+	return normalizedBaseHref
+}
+
+const basename = getBasename()
+
+const entryHtmlRedirectPaths = [
+	'/404.html',
+	'/index.html',
+	'/weather-app/404.html',
+	'/weather-app/index.html',
+] as const
 
 const App: FC = () => {
 	return (
@@ -34,6 +51,18 @@ const App: FC = () => {
 				>
 					<Suspense fallback={<div className='ellipses'>Loading</div>}>
 						<Routes>
+							{entryHtmlRedirectPaths.map(path => (
+								<Route
+									element={
+										<Navigate
+											replace
+											to='/'
+										/>
+									}
+									key={path}
+									path={path}
+								/>
+							))}
 							<Route
 								element={<HomePage />}
 								path='/'
