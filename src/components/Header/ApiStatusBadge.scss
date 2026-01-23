@@ -1,0 +1,218 @@
+.pill-container {
+  --pill-bg: color-mix(in oklch, var(--color-surface-nav), var(--color-surface-2) 40%);
+  --pill-border: var(--color-border);
+  --pill-focus-border: var(--color-focus-ring);
+  --pill-focus-glow: transparent;
+
+  --text-main: var(--color-text);
+  --text-muted: var(--color-text-muted);
+  --text-orange: var(--color-warning);
+
+  --dot-orange: var(--color-warning);
+  --dot-green: var(--color-success);
+
+  --height: 34px;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+
+	align-items: center;
+	background: var(--pill-bg);
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--pill-border);
+	box-sizing: border-box;
+	color: var(--text-main);
+	cursor: pointer;
+	display: flex;
+	font-family: inherit;
+	font-size: 11px;
+	font-weight: 600;
+	height: var(--height);
+	letter-spacing: 0.05em;
+	overflow: hidden;
+	position: relative;
+	transition: width 0.4s var(--ease), border-color 0.2s, box-shadow 0.2s;
+	user-select: none;
+	width: 16rem;
+
+	&:hover {
+		background: color-mix(in oklch, var(--pill-bg), var(--color-text) 4%);
+		border-color: var(--color-border-subtle);
+	}
+
+	&:focus-visible {
+		border-color: var(--pill-focus-border);
+		box-shadow: 0 0 0 var(--focus-ring-width) var(--pill-focus-border);
+		outline: none;
+	}
+
+	/* --- ACTIVE / EDITING STATE --- */
+	&.editing,
+	&.validating {
+		width: 320px;
+		border-color: var(--pill-focus-border);
+		box-shadow: 0 0 0 var(--focus-ring-width) var(--pill-focus-border);
+		cursor: default;
+	}
+
+	/* --- INNER LAYOUT (The Slide Mechanism) --- */
+	& .slide-track {
+		position: relative;
+		width: 100%;
+		height: 100%;
+	}
+
+	& .view {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		padding: 0 10px;
+		box-sizing: border-box;
+		transition: transform 0.3s var(--ease), opacity 0.2s;
+	}
+
+	& .view-status {
+		transform: translateX(0);
+		opacity: 1;
+		justify-content: space-between;
+	}
+
+	/* Hide status when editing */
+	&.editing .view-status,
+	&.validating .view-status {
+		transform: translateX(-20%); /* Subtle slide out */
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	& .status-content {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	& .dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		flex-shrink: 0;
+	}
+	& .dot.orange { background: var(--dot-orange); box-shadow: 0 0 6px color-mix(in oklch, var(--dot-orange), transparent 60%); }
+	& .dot.green { background: var(--dot-green); box-shadow: 0 0 6px color-mix(in oklch, var(--dot-green), transparent 60%); }
+
+	& .label-group {
+		display: flex;
+		gap: 4px;
+		color: var(--text-main);
+		text-transform: uppercase;
+		white-space: nowrap;
+	}
+
+	& .label-main { color: var(--text-main); font-weight: 700; }
+	& .label-sub { color: var(--text-muted); font-weight: 500; }
+
+	& .caret {
+		color: var(--text-muted);
+		font-size: 8px;
+		margin-left: auto; /* Ensures it stays right */
+	}
+
+	/* --- FORM VIEW (The "Guts") --- */
+	& .view-form {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+
+	/* Show form when editing */
+	&.editing .view-form,
+	&.validating .view-form {
+		transform: translateX(0);
+		opacity: 1;
+	}
+
+	& .api-input {
+		flex: 1;
+		background: transparent;
+		border: none;
+		outline: none;
+		color: var(--text-main);
+		font-family: inherit;
+		font-size: 11px;
+		font-weight: 500;
+		text-transform: uppercase; /* Screenshot style */
+		min-width: 0; /* Prevents flex overflow */
+		height: 100%;
+	}
+
+	& .api-input::placeholder {
+		color: var(--text-muted);
+		opacity: 0.7;
+	}
+
+	& .actions {
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		margin-left: 8px;
+	}
+
+	& .btn-icon {
+		background: transparent;
+		border: 1px solid transparent;
+		cursor: pointer;
+		height: 24px;
+		padding: 0;
+		color: var(--text-muted);
+		border-radius: 999px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.2s;
+		font-size: 14px;
+		line-height: 1;
+		width: 24px;
+	}
+
+	& .btn-icon:hover {
+		background: color-mix(in oklch, var(--color-surface-2), var(--color-text) 8%);
+		border-color: var(--color-border-subtle);
+		color: var(--text-main);
+	}
+
+	& .btn-icon:active {
+		background: color-mix(in oklch, var(--color-surface-2), var(--color-text) 12%);
+	}
+
+	& .btn-icon:focus-visible {
+		box-shadow: 0 0 0 var(--focus-ring-width) var(--color-focus-ring);
+		outline: none;
+	}
+
+	& .btn-save:hover {
+		background: color-mix(in oklch, var(--color-success), transparent 88%);
+		border-color: color-mix(in oklch, var(--color-success), transparent 65%);
+		color: var(--dot-green);
+	}
+
+	& .btn-cancel:hover {
+		background: color-mix(in oklch, var(--color-danger), transparent 88%);
+		border-color: color-mix(in oklch, var(--color-danger), transparent 65%);
+		color: var(--color-danger);
+	}
+
+	/* --- UTILS --- */
+	&.error-shake {
+		animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+		border-color: var(--color-danger) !important;
+		box-shadow: 0 0 0 var(--focus-ring-width) var(--color-danger) !important;
+	}
+
+	@keyframes shake {
+		10%, 90% { transform: translate3d(-1px, 0, 0); }
+		20%, 80% { transform: translate3d(2px, 0, 0); }
+		30%, 50%, 70% { transform: translate3d(-2px, 0, 0); }
+		40%, 60% { transform: translate3d(2px, 0, 0); }
+	}
+}

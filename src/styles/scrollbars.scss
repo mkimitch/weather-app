@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-	background: linear-gradient(to bottom, var(--background-gradient-start), var(--background-gradient-end));
+	background: linear-gradient(to bottom, var(--color-bg-1), var(--color-bg-2));
 	height: 0.8rem;
 	width: 0.8rem;
 
@@ -10,7 +10,7 @@
 
 	// Vertical scrollbar thumb
 	&-thumb {
-		background-color: var(--scrollbar-thumb-background);
+		background-color: var(--color-scrollbar-thumb);
 		border-radius: 1rem;
 
 		// Horizontal scrollbar thumb
@@ -32,6 +32,6 @@
 
 // Firefox scrollbars
 .scroll-container {
-	scrollbar-color: oklch(0.5 0 89.88 / 0.3) transparent;
+	scrollbar-color: var(--color-scrollbar-thumb) transparent;
 	scrollbar-width: thin;
 }

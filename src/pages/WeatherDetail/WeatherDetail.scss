@@ -42,8 +42,8 @@
 		width: 100%;
 
 		&:has(.weather-alerts) {
-			background-color: oklch(0.6 0.24 29.23);
-			color: oklch(1 0 231.14);
+			background-color: var(--color-danger-surface);
+			color: var(--color-on-danger);
 		}
 
 		h2 {

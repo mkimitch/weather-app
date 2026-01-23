@@ -3,9 +3,9 @@
 	@include rounded-corners;
 
 	backdrop-filter: blur(1rem);
-	background: var(--card-background);
+	background: var(--color-surface-1);
 	border: 0.1rem solid transparent;
-	color: var(--text-color);
+	color: var(--color-text);
 	display: grid;
 	font-size: 1.6rem;
 	gap: 0.8rem;
@@ -24,19 +24,19 @@
 	}
 
 	&--error {
-		background: color-mix(in oklch, var(--card-background), var(--error-color) 12%);
-		border-color: color-mix(in oklch, var(--error-color) 35%, transparent);
-		border-left: 0.6rem solid var(--error-color);
+		background: color-mix(in oklch, var(--color-surface-1), var(--color-danger) 12%);
+		border-color: color-mix(in oklch, var(--color-danger) 35%, transparent);
+		border-left: 0.6rem solid var(--color-danger);
 
 		.alert__title {
-			color: var(--error-color);
+			color: var(--color-danger);
 		}
 	}
 
 	&--info {
-		$info-color: var(--secondary-accent);
+		$info-color: var(--color-link);
 
-		background: color-mix(in oklch, var(--card-background), $info-color 12%);
+		background: color-mix(in oklch, var(--color-surface-1), $info-color 12%);
 		border-color: color-mix(in oklch, $info-color 35%, transparent);
 		border-left: 0.6rem solid $info-color;
 
@@ -46,22 +46,22 @@
 	}
 
 	&--success {
-		background: color-mix(in oklch, var(--card-background), var(--success-color) 12%);
-		border-color: color-mix(in oklch, var(--success-color) 35%, transparent);
-		border-left: 0.6rem solid var(--success-color);
+		background: color-mix(in oklch, var(--color-surface-1), var(--color-success) 12%);
+		border-color: color-mix(in oklch, var(--color-success) 35%, transparent);
+		border-left: 0.6rem solid var(--color-success);
 
 		.alert__title {
-			color: var(--success-color);
+			color: var(--color-success);
 		}
 	}
 
 	&--warning {
-		background: color-mix(in oklch, var(--card-background), var(--warning-color) 12%);
-		border-color: color-mix(in oklch, var(--warning-color) 35%, transparent);
-		border-left: 0.6rem solid var(--warning-color);
+		background: color-mix(in oklch, var(--color-surface-1), var(--color-warning) 12%);
+		border-color: color-mix(in oklch, var(--color-warning) 35%, transparent);
+		border-left: 0.6rem solid var(--color-warning);
 
 		.alert__title {
-			color: var(--warning-color);
+			color: var(--color-warning);
 		}
 	}
 }
