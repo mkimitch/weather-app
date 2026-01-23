@@ -4,9 +4,10 @@ import Alert from '../Alert/Alert'
 
 interface SettingsProps {
 	onClose?: () => void
+	title?: string
 }
 
-const Settings: FC<SettingsProps> = ({ onClose }) => {
+const Settings: FC<SettingsProps> = ({ onClose, title = 'Settings' }) => {
 	const [apiKey, setApiKey] = useState(
 		localStorage.getItem('openweather_api_key') || ''
 	)
@@ -48,7 +49,7 @@ const Settings: FC<SettingsProps> = ({ onClose }) => {
 	return (
 		<div className='settings'>
 			<div>
-				<h2>Settings</h2>
+				<h2>{title}</h2>
 				{onClose ? (
 					<button
 						onClick={onClose}

@@ -9,6 +9,7 @@ const BundleAnalyzerPlugin =
 dotenv.config()
 
 const useSSL = process.env.USE_SSL === 'true'
+const enableBundleAnalyzer = process.env.BUNDLE_ANALYZE === 'true'
 
 module.exports = merge( common, {
 	devServer: {
@@ -51,11 +52,15 @@ module.exports = merge( common, {
 		publicPath: '/',
 	},
 	plugins: [
-		new BundleAnalyzerPlugin( {
-			// analyzerMode: 'server',
-			analyzerMode: 'static',
-			openAnalyzer: true,
-			reportFilename: 'bundle-report.html',
-		} ),
+		...( enableBundleAnalyzer
+			? [
+				new BundleAnalyzerPlugin( {
+					// analyzerMode: 'server',
+					analyzerMode: 'static',
+					openAnalyzer: true,
+					reportFilename: 'bundle-report.html',
+				} ),
+			]
+			: [] ),
 	],
 } )

@@ -3,15 +3,15 @@
 @use "./themes" as *;
 
 @mixin rounded-corners {
-	border-radius: 0.8rem;
+	border-radius: var(--radius-sm, 0.8rem);
 }
 
 @mixin drop-shadow {
-	filter: drop-shadow(0 0.7rem 0.7rem oklch(0% 0 0deg / 0.1));
+	filter: drop-shadow(0 0.7rem 0.7rem var(--shadow-color, oklch(0% 0 0deg / 0.1)));
 }
 
 @mixin text-shadow {
-	text-shadow: 0 0.2rem 0.8rem oklch(0% 0 0 / 0.1);
+	text-shadow: 0 0.2rem 0.8rem var(--shadow-color, oklch(0% 0 0deg / 0.1));
 }
 
 @mixin sr-only {

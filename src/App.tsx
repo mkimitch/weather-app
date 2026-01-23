@@ -36,7 +36,7 @@ const App: FC = () => {
 	return (
 		<div className='weather-app'>
 			<a
-				className='sr-only'
+				className='sr-only sr-only-focusable'
 				href='#main-content'
 			>
 				Skip to main content
